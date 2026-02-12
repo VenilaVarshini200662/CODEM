@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>String Processing program</title>
+</head>
+<body>
+   <h1>String Processing program</h1> 
+</body>
+<script>
+    let fullName = 'Venila Varshini M';
+    let upperCaseName = fullName.toUpperCase();
+    let lowerCaseName =  fullName.toLowerCase();
+    let nameLength = fullName.length;
+    let firstSpaceIndex = fullName.indexOf(" ");
+    let firstName = fullName.substring(0,firstSpaceIndex);
+    console.log('Full Name : '+ fullName);
+    console.log('Name converted to UpperCase: '+ upperCaseName);
+    console.log('Name converted to LowerCase: '+ lowerCaseName);
+    console.log('Length of the string '+ fullName +": " + nameLength);
+    console.log('First name from the full name: '+ firstName);
+</script>
+</html>
