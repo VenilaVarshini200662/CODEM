@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Email String Analyser</title>
+</head>
+<body>
+    <h1>Email String Analyser</h1> 
+</body>
+<script>
+    let email = 'varshinimvenila@gmail.com';
+    let sepIndex = email.indexOf('@');
+    let userName = email.substring(0, sepIndex);
+    let domainName = email.substring(sepIndex+1);
+    console.log('Username: '+ userName);
+    console.log('Domain name: '+ domainName);
+</script>
+</html>
