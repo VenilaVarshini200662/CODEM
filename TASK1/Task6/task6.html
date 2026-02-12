@@ -15,23 +15,24 @@
     console.log('Value stored in variable3 declared using const: '+ variable3);
     variable1 = 'One Hundred';
     variable2 = 'Two Hundred';
+    //variable3 = 'Three Hundred';
+    /* Uncaught TypeError: Assignment to constant variable.
+    The above error occurs when attempting to reassign value to constant variable and hence not reassigned*/
 
     console.log('After reassigning values:')
     console.log('Value stored in variable1 declared using var: '+ variable1);
     console.log('Value stored in variable2 declared using let: '+ variable2);
-
-    /* Uncaught TypeError: Assignment to constant variable.
-    The above error occurs when attempting to reassign value to constant variable and hence not reassigned*/
     console.log('Reassigning of variable3 causes error. Value stored in variable3 :'+ variable3);
 
     console.log('After redeclaration:');
     var variable1 = 2500;
-    console.log('Value stored in variable declared using var: '+variable1);
-
-
+    //let variable2 = 3000;
+    //const variable3 = 3500;
     /*Uncaught SyntaxError: Identifier 'variable2' has already been declared 
     The above error occurs on attempting to redeclare variable2 which is inintially declared using let and
     hence variable2 can't be redeclared */
+    
+    console.log('Value stored in variable declared using var: '+variable1);
     console.log('Redeclaration of variable2 and variable3 causes error.')
      
 
