@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Message Intent Detection</title>
+</head>
+<body>
+    <h1>Message Intent Detection</h1>
+    <button onclick="
+        let message = 'Where are you? There is a problem';
+        detectIntent(message)">Detect Intent
+    </button>
+
+    <script>
+        function detectIntent(message){
+            let isQuestion = false;
+            let isComplaint = false;
+            if(message === ''){
+                console.log('Invalid');
+            }
+            else{
+                if(message.includes('?')){
+                    isQuestion = true;
+                }
+                if(message.includes('problem') || message.includes('not working')){
+                    isComplaint = true;
+                }
+
+                if(isQuestion && isComplaint){
+                    console.log('Intent: Urgent Request');
+                }
+                else if(isComplaint){
+                    console.log('Intent: Complaint');
+                }
+                else if(isQuestion){
+                    console.log('Intent: Question');
+                }
+                else{
+                    console.log('Intent: Other');
+                }
+            }
+            console.log(`Orginal Message: ${message}` );
+            return 1;
+        }
+    </script>
+        
+</body>
+</html>
