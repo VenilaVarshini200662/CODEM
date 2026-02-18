@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Simple Billing System</title>
+</head>
+<body>
+    <h1>Simple Billing System</h1>
+    <button onclick="
+        let billAmount = 1000;
+        let isMember = false;
+        calculateBill(billAmount,isMember)">Regular
+    </button>
+    <button onclick="
+        billAmount = 5000;
+        isMember = true;
+        calculateBill(billAmount,isMember)">Member
+    </button>
+
+
+    <script>
+        function calculateBill(billAmount,isMember){
+            let discountAmt='';
+            let discount = '';
+            let finalAmount = 0;
+            if(billAmount <= 0){
+                console.log('Error');
+                return 0;
+            }
+            else{
+                if(isMember){
+                    discountAmt = 0.1 * billAmount;
+                    discount= 10;
+                }
+                else if(billAmount >= 1000){
+                    discountAmt = 0.05 * billAmount;
+                    discount = 5;
+                }
+                else{
+                    discountAmt = 0;
+                    discount = 0;
+                }
+            }
+            finalAmount = billAmount - discountAmt;
+            console.log(`Bill Amount: Rs.${billAmount}`);
+            console.log(`Member: ${isMember}`);
+            console.log(`Discount: ${discount}%`);
+            console.log(`Final Amount: ${finalAmount}`);
+            if(finalAmount>=1500){
+                console.log('Free gifts Available');
+            }
+            else{
+                console.log('No gifts');
+            }
+        }
+    </script>
+</body>
+</html>
