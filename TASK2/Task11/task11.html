@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Weather Action Advisor</title>
+</head>
+<body>
+    <h1>Weather Action Advisor</h1>
+    <h2>To check the weather condition:</h2>
+    <button onclick="
+        let weatherCondition = 'sunny';
+        let temperature = 32;
+        checkWeather(weatherCondition, temperature)">Click
+    </button>
+
+    <script>
+        function checkWeather(weatherCondition, temperature){
+            let result='';
+            let suggest='';
+            /*Logic used:  Weather can be sunny even if temperature is low and weather can be rainy even
+             if temperature is high*/
+            if(temperature < 25 && weatherCondition !== 'sunny' || temperature >= 25 && weatherCondition === 'rainy'){
+               result = weatherCondition; 
+               suggest = 'Carry umbrella';
+            }
+            else{
+                result = weatherCondition;
+                suggest = 'Stay hydrated';
+            }
+            alert(`
+            Weather seems to be ${weatherCondition} and 
+            temperature is ${temperature} deg Celsius.
+            ${suggest}.`)
+        }
+    </script>
+</body>
+</html>
