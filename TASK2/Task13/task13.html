@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Appointment Confirmation System</title>
+</head>
+<body>
+    <h1>Appointment Confirmation System</h1>
+    <button onclick="
+        let dateAvailable = true;
+        let userConfirmed = true;
+        checkAppointment(dateAvailable, userConfirmed)">Check Appointment status
+    </button>
+    <script>
+        function checkAppointment(dateAvailable, userConfirmed){
+            if(!dateAvailable)
+                alert('Appointment Rejected');
+            else if(!userConfirmed)
+                alert('Appointment Rejected');
+            else
+                alert('Appointment Confirmed');
+        }
+    </script>
+        
+</body>
+</html>
