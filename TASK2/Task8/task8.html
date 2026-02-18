@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Message Priority Formatter</title>
+</head>
+<body>
+    <h1>Message Priority Formatter</h1>
+    <button onclick="
+        let message ='This is an error';
+        let isUrgent = false;
+        processMessage(message,isUrgent)">Click
+    </button>
+
+    <script>
+        function processMessage(message,isUrgent){
+            let hasWarningWord =false;
+            let isHighPriority =false;
+            let finalMsg = '';
+            if(!message){
+                console.log('Message cannot be empty');
+                return 0;
+            }
+            else{
+                if(message.includes('error') || message.includes('fail')){
+                    hasWarningWord = true;
+                }
+                if(isUrgent || hasWarningWord){
+                    isHighPriority = true;
+                }
+            }
+            if(isHighPriority){
+                finalMsg = message.toUpperCase() + "  \u26A0 IMPORTANT:";
+            }
+            else{
+                finalMsg = message.toLowerCase() +"  INFO:";
+            }
+            console.log(`Final Message: ${finalMsg}`);
+            console.log(`High Priority Staus: ${isHighPriority}`);
+        }
+    </script>
+</body>
+</html>
