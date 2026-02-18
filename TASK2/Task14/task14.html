@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Notification Filter</title>
+</head>
+<body>
+    <h1>Notification Filter</h1>
+    <button onclick="
+        let message = 'Security Alert. Malware detected. Take immediate action';
+        let urgency = true;
+        checkNotificationType(message,urgency)">Check Notification type
+    </button>
+
+    <script>
+        function checkNotificationType(message,urgency){
+            let notifyType='';
+            if(urgency)
+                notifyType = 'Important';
+            else
+                notifyType = 'Normal';
+
+            console.log(`
+            ${notifyType} notification. Read out the message.
+            Message: ${message}`);
+        }
+    </script>
+</body>
+</html>
