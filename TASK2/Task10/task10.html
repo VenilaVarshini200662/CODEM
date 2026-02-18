@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Account Security Check</title>
+</head>
+<body>
+    <h1>Account Security Check</h1>
+    <button onclick="
+        let passwordStatus = 'valid';
+        let OTPVerify = 'valid';
+        let accBlkStatus = 'invalid';
+        checkAccountAccess(passwordStatus, OTPVerify ,accBlkStatus)">login
+    </button>
+
+    <script>
+        function checkAccountAccess(passwordStatus, OTPVerify, accBlkStatus){
+            if(passwordStatus === 'valid' && OTPVerify === 'valid' && accBlkStatus ==='valid'){
+                console.log('Login Success');
+            }
+            else{
+                console.log('Login failed. Check validity of password,OTP and account block status.');
+            }
+        }
+    </script>
+</body>
+</html>
