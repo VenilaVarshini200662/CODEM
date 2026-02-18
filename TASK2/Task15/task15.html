@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Payment Status Checker</title>
+</head>
+<body>
+    <h1>Payment Status Checker</h1>
+    <button onclick="
+        let amount = 1000;
+        let isPaid =  true;
+        let paymentMethod = 'UPI';
+        checkPaymentStatus(amount, isPaid, paymentMethod)">Check Status    
+    </button>
+
+    <script>
+        function checkPaymentStatus(amount, isPaid, paymentMethod){
+            let payStatus = '';
+            if(amount <= 0){
+                console.log('Invalid payment amount');
+                return 0;
+            }
+            else if(!isPaid)
+                payStatus = 'Payment Pending';
+            else if(paymentMethod === 'UPI' || paymentMethod === 'Card')
+                payStatus = 'Payment Successful';
+            else{
+                paymentMethod='Invalid Payment Method';
+                payStatus = 'Payment Pending';
+            }
+            console.log(`
+            Amount: ${amount}
+            Payment status: ${payStatus}
+            Payment Method: ${paymentMethod}`);
+        }
+    </script>
+</body>
+</html>
