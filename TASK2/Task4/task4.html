@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Coin Toss Game</title>
+</head>
+<body>
+    <h1>Coin Toss Game</h1>
+    <button onclick="
+        const playerChoice = 'Heads'
+        playCoinToss(playerChoice)">Heads
+    </button>
+    <button onclick="
+        playerChoice = 'Tails'
+        playCoinToss(playerChoice)">Tails
+    </button>
+
+    <script>
+        function playCoinToss(playerChoice){
+            let result='';
+            let randomVal = Math.random();
+            const calComputerMove = findComputerMove(randomVal);
+            if(playerChoice === calComputerMove){
+                result = 'Win';
+            }
+            else{
+                result = 'Lose';
+            }
+            alert(`Your Choice is ${playerChoice} and Computer choice is ${calComputerMove}. You ${result}`);
+        }
+
+        function findComputerMove(randomVal){
+            if(randomVal>= 0 && randomVal < 1/2){
+              let computerMove = 'Heads' ; 
+              return computerMove;
+            }
+            else{
+                computerMove = 'Tails';
+                return computerMove;
+            }
+        }
+
+    </script>
+</body>
+</html>
