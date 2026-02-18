@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Order & Discount Processor</title>
+</head>
+<body>
+    <h1>Order & Discount Processor</h1>
+    <h2>Choose Orders:</h2>
+    <button onclick="
+        let orderAmount = 1000;
+        let isMember = false;
+        let couponCode = '';
+        processOrder(orderAmount, isMember,couponCode)">Small
+    </button>
+    <button onclick="
+        orderAmount = 3000;
+        isMember = false;
+        couponCode = 'SAVE10';
+        processOrder(orderAmount, isMember,couponCode)">Medium
+    </button>
+    <button onclick="
+        orderAmount = 20000;
+        isMember = true;
+        couponCode = 'SAVEIN';
+        processOrder(orderAmount, isMember,couponCode)">Large
+    </button>
+
+    <script>
+        function processOrder(orderAmount, isMember, couponCode){
+            const checkCoupon = validateCoupon(couponCode);
+            console.log(`Order Amount: Rs.${orderAmount}`);
+            let discountAmt='';
+            if(orderAmount>0){
+                if(orderAmount >= 3000 || isMember){
+                    discountAmt = 0.2 * orderAmount;
+                    console.log('Discount: 20%');
+                }
+                else if(orderAmount >=1500 && couponCode === 'SAVE10'){
+                    discountAmt = 0.1 * orderAmount;
+                    console.log('Discount: 10%');
+                }
+                else if(checkCoupon === 'Invalid Coupon'){
+                    discountAmt = 0;
+                    console.log('Discount: 0%');
+                }
+                else{
+                    discountAmt = 0.05 * orderAmount;
+                    console.log('Discount: 5%');
+                }
+                let finalAmount = orderAmount - discountAmt;
+                if(finalAmount >= 2000){
+                    console.log(`Final Amount: Rs.${finalAmount}`);
+                    console.log('Delivery status: Free');
+                }
+                else{
+                    finalAmount = finalAmount + 100;
+                    console.log(`Final Amount: Rs.${finalAmount}`);
+                    console.log('Delivery status: Charged(Rs.100)');    
+                }
+            }
+            console.log(`Coupon validity: ${checkCoupon}`);
+            
+        }
+
+        function validateCoupon(couponCode){
+            if(couponCode){
+                let firstPart = couponCode.substring(0,4);
+                let remainingPart = couponCode.substring(4);
+                let remLen = remainingPart.length;
+                let remNum = Number(remainingPart);
+                if (remLen === 1 || remLen === 2){
+                     if(firstPart === 'SAVE' && typeof(remNum) === 'number' && String(remNum) !== 'NaN'){
+                        return 'Valid Coupon';
+                    }
+                }
+            }
+            return 'Invalid Coupon';
+        }
+    </script>
+</body>
+</html>
