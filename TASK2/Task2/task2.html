@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Movie Ticket Permission</title>
+</head>
+<body>
+    <h1>Movie Ticket Permission</h1>
+    <button onclick="
+        let age = 48;
+        let hasPermission = true;
+        checkTicket(age,hasPermission)">Adult
+    </button>
+    <button onclick="
+        age = 15;
+        hasPermission = false;
+        checkTicket(age,hasPermission)">Teen
+    </button>
+    <button onclick="
+        age = 7;
+        hasPermission = true;
+        checkTicket(age,hasPermission)">Child
+    </button>
+    <script>
+        function checkTicket(age,hasPermission){
+            if(age < 13 || age > 17 ){
+                console.log('Allowed');
+               
+            }
+            else{
+                if(hasPermission === true){
+                    console.log('Allowed');
+                }
+                else{
+                    console.log('Not allowed');
+
+                }
+            }
+        }
+    </script>
+</body>
+</html>
