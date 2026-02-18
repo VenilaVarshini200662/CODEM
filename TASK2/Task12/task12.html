@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Password Strength Validator</title>
+</head>
+<body>
+    <h1>Password Strength Validator</h1>
+    <button onclick="
+        let length = 16;
+        let characters = 'AbC12346@789aBcr';
+        checkPassword(length, characters)">Check Strength
+    </button>
+
+    <script>
+        /*Logic that developed by me to check password strength is:
+        1) Weak Password: Length < 8 or characters are only numbers or only alphabets(Uppercase or lowercase)
+        2) Medium Password: Length between 8 and 11(including 8 and 11) and characters include both alphabets and numbers
+           but not special characters
+        3) Strong Password: Length > = 12 and characters include alphabets, numbers and special characters
+           or only numbers and alphabets*/
+
+        function checkPassword(length, characters){
+            let result='';
+            if(length < 8 || /^[0-9]+$/.test(characters) || /^[A-Za-z]+$/.test(characters)){
+                result = 'Weak';
+            }
+            else if(length >= 8 && length<=11 && /^[A-Za-z0-9]+$/.test(characters)){
+                result = 'Medium';
+            }
+            else{
+                result = 'Strong';
+            }
+            console.log(`Your Password '${characters}' is ${result}`);
+        }
+    </script>
+</body>
+</html>
