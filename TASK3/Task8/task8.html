@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dynamically create a list from objects</title>
+</head>
+<body>
+    <h1>Dynamically creating a list from objects</h1>
+
+    <h1>Students List</h1>
+    <div id="container"></div>
+    <script>
+        let students = [
+            { name: "Venila", age: 20 },
+            { name: "Madhu", age: 19 },
+            { name: "Nila", age: 21 }
+        ];
+        let container = document.getElementById("container");
+        let ul = document.createElement("ul");
+        for (let i = 0; i < students.length; i++) {
+            let li = document.createElement("li");
+            li.textContent = "Name: " + students[i].name +
+                             " and  Age: " + students[i].age;
+            ul.appendChild(li);
+        }
+        container.appendChild(ul);
+    </script>
+
+</body>
+</html>
