@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Nested Shopping Cart Object</title>
+</head>
+<body>
+    <h1>Nested Shopping Cart Object</h1>
+
+    <script>
+        const cart = {
+            cart1 : {
+                name : 'FlowerVase',
+                price : 100,
+                quantity : 2
+            },
+            cart2 : {
+                name : 'BasketBall',
+                price : 750,
+                quantity : 1
+            },
+            cart3 : {
+                name : 'Cap',
+                price : 70,
+                quantity : 5
+            }
+        }
+
+        const cartLength = Object.keys(cart).length;
+        let totalPrice = 0;
+        const cartKeys = Object.keys(cart);
+        console.log('Product list with total price of each product:')
+        for(let i = 0; i < cartLength; i++){
+            let productTotalPrice = cart[cartKeys[i]].price * cart[cartKeys[i]].quantity
+            console.log(cart[cartKeys[i]].name + ': Rs.' + productTotalPrice);
+            totalPrice = totalPrice + productTotalPrice;
+        }
+        console.log('Total price of all the products purchased : Rs.'+totalPrice);
+    </script>
+</body>
+</html>
