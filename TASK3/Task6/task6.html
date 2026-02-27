@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Selecting Elements & Updating Content</title>
+</head>
+<body>
+    <h1 id ='heading1'>Selecting Elements & Updating Content</h1>
+    <button class ='btn' onclick="
+        changeHello()">Hi
+    </button>
+    <button class = 'btn' onclick="
+        changeBtnStyle(1)">Click me
+    </button>
+    <button class='btn' onclick="
+        changeBtnStyle(2)">Help
+    </button>
+
+    <script>
+      let position = '';
+      const heading = document.getElementById('heading1');
+      const helloBtn = document.querySelector('.btn');
+      const BtnClass = document.getElementsByClassName('btn');
+
+      heading.style.background = 'Green';
+      heading.style.color = 'whitesmoke';
+      heading.textContent = 'Welcome to DOM';
+
+      function changeHello(){
+        helloBtn.style.color = 'Red';
+        helloBtn.textContent = 'Hello Everyone';
+      }
+
+      function changeBtnStyle(position){
+        BtnClass[position].textContent = 'Any Doubts';
+        BtnClass[position].style.color = 'Blue';
+        BtnClass[position].style.background = 'yellow';
+      }
+     
+    </script>
+</body>
+</html>
