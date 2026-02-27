@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Toggle Class on Multiple Elements</title>
+    <style>
+        .theme{
+              color: white;
+              background: palevioletred;
+              border-radius:5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Toggle Class on Multiple Elements</h1>
+    <h2 class = "togglebtn">Lets make some changes!</h2>
+    <button class = "togglebtn" onclick=" 
+        classToggle()">Click Me
+    </button>
+    <P class = "togglebtn">Toggling happens..</P>
+
+    <script>
+        const toggleButtonElements = document.getElementsByClassName("togglebtn");
+
+        function classToggle(){
+           for( let i=0; i < toggleButtonElements.length ; i++){
+            toggleButtonElements[i].classList.toggle('theme');
+           }
+        }
+    </script>
+
+    
+</body>
+</html>
