@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Keyboard Events Interaction</title>
+    <style>
+        #display {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+            padding: 20px;
+            border: 2px solid black;
+            width: 400px;
+            text-align: center;
+            transition: color 0.2s;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Keyboard Events Interaction</h2>
+<p>Press any key to see it displayed below:</p>
+<div id="display">Press a key!</div>
+
+<script>
+    const display = document.getElementById("display");
+    document.addEventListener("keydown", function(event) {
+        display.textContent = "Key Pressed: " + event.key;
+        if (event.key === "a" || event.key === "A") {
+            display.style.color = "red";
+        } else if (event.key === "b" || event.key === "B") {
+            display.style.color = "blue";
+        } else if (event.key === "c" || event.key === "C") {
+            display.style.color = "green";
+        } else {
+            display.style.color = "black";
+        }
+    });
+
+    document.addEventListener("keyup", function(event) {
+        console.log("Key released:", event.key);
+    });
+</script>
+
+</body>
+</html>
