@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real-Time Validation</title>
+    <style>
+        input {
+            display: block;
+            margin: 10px 0;
+            padding: 8px;
+            width: 300px;
+            border: 2px solid #ccc;
+        }
+
+        input.invalid {
+            border-color: red;
+        }
+
+        input.valid {
+            border-color: green;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Real-Time Input Validation</h2>
+
+<form id="myForm">
+    <label>Name:</label>
+    <input type="text" id="name" placeholder="Enter your name">
+    <div id="nameError" class="error"></div>
+
+    <label>Email:</label>
+    <input type="text" id="email" placeholder="Enter your email">
+    <div id="emailError" class="error"></div>
+
+    <button type="submit">Submit</button>
+</form>
+
+<script>
+const nameInput = document.getElementById("name");
+const emailInput = document.getElementById("email");
+const nameError = document.getElementById("nameError");
+const emailError = document.getElementById("emailError");
+const form = document.getElementById("myForm");
+nameInput.addEventListener("input", function() {
+    if (nameInput.value.trim().length < 3) {
+        nameInput.classList.add("invalid");
+        nameInput.classList.remove("valid");
+        nameError.textContent = "Name must be at least 3 characters.";
+    } else {
+        nameInput.classList.remove("invalid");
+        nameInput.classList.add("valid");
+        nameError.textContent = "";
+    }
+});
+emailInput.addEventListener("input", function() {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/; 
+    if (!emailPattern.test(emailInput.value.trim())) {
+        emailInput.classList.add("invalid");
+        emailInput.classList.remove("valid");
+        emailError.textContent = "Enter a valid email (example: user@gmail.com).";
+    } else {
+        emailInput.classList.remove("invalid");
+        emailInput.classList.add("valid");
+        emailError.textContent = "";
+    }
+});
+
+form.addEventListener("submit", function(event) {
+    event.preventDefault();
+    if (nameInput.classList.contains("valid") && emailInput.classList.contains("valid")) {
+        alert("Form submitted successfully!");
+        form.reset();
+        nameInput.classList.remove("valid");
+        emailInput.classList.remove("valid");
+    } else {
+        alert("Please fix errors before submitting.");
+    }
+});
+</script>
+
+</body>
+</html>
