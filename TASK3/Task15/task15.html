@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Interactive To-Do List with Validation</title>
+    <style>
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            background: linear-gradient( to right, rgb(209, 174, 209), rgb(185, 123, 155));
+        }
+
+        #todoContainer {
+            max-width: 400px;
+            margin-top: 20px;
+        }
+
+        input {
+            padding: 8px;
+            width: 250px;
+        }
+
+        button {
+            padding: 8px 12px;
+            margin-left: 5px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 15px;
+        }
+
+        li {
+            padding: 8px;
+            border: 2px solid #504a4a;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 5px;
+        }
+
+        li.completed span {
+            text-decoration: line-through;
+            color: rgb(109, 104, 104);
+        }
+
+        .removeBtn {
+            background-color: red;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 3px 6px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Interactive To-Do List with Validation</h2>
+
+<div id="todoContainer"></div>
+
+<script>
+    const todoData = {};
+    const container = document.getElementById("todoContainer");
+    const input = document.createElement("input");
+    input.type = "text";
+    input.placeholder = "Enter a task";
+    const addBtn = document.createElement("button");
+    addBtn.textContent = "Add Task";
+    const ul = document.createElement("ul");
+    container.appendChild(input);
+    container.appendChild(addBtn);
+    container.appendChild(ul);
+    function renderTasks() {
+        ul.innerHTML = ""; 
+
+        for (let key in todoData) {
+            const task = todoData[key];
+            const li = document.createElement("li");
+            if (task.completed) li.classList.add("completed");
+            const span = document.createElement("span");
+            span.textContent = task.text;
+            span.style.cursor = "pointer";
+            span.addEventListener("click", function() {
+                task.completed = !task.completed;
+                renderTasks();
+            });
+
+            const removeBtn = document.createElement("button");
+            removeBtn.textContent = "X";
+            removeBtn.classList.add("removeBtn");
+
+            removeBtn.addEventListener("click", function() {
+                delete todoData[key]; 
+                renderTasks();        
+            });
+
+            li.appendChild(span);
+            li.appendChild(removeBtn);
+            ul.appendChild(li);
+        }
+    }
+
+    addBtn.addEventListener("click", function() {
+        const taskText = input.value.trim();
+
+        if (taskText === "") {
+            alert("Please enter a task.");
+            return;
+        }
+        const taskId = Date.now();
+        todoData[taskId] = { text: taskText, completed: false };
+
+        input.value = ""; 
+        renderTasks();
+    });
+    input.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") addBtn.click();
+    });
+</script>
+</body>
+</html>
