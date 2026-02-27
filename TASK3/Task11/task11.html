@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Using the Event Object with Multiple Buttons</title>
+    <style>
+
+        button {
+            padding: 8px 12px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            border: 2px solid black;
+            width: 300px;
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Using the Event Object with Multiple Buttons</h2>
+    <button class="btn"> One</button>
+    <button class="btn"> Two</button>
+    <button class="btn"> Three</button>
+
+    <div id="output">Click a button to see the result here.</div>
+
+    <script>
+        let buttons = document.querySelectorAll(".btn");
+        let output = document.getElementById("output");
+        buttons.forEach(function(button) {
+
+            button.addEventListener("click", function(event) {
+                let buttonText = event.target.textContent;
+                let eventType = event.type;
+                output.textContent = 
+                    "You clicked: " + buttonText +
+                  " and Event Type: " + eventType;
+            });
+        });
+    </script>
+
+</body>
+</html>
