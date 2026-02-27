@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Function Modifying an Object</title>
+</head>
+<body>
+    <h1>Function Modifying an Object</h1>
+    <script>
+        const userProduct = {
+            ProductName : 'FlowerVase',
+            Colour : 'Green',
+            Cost : 100
+        };
+        console.log('Initial object:');
+        console.log(userProduct);
+        console.log(modifyProduct(userProduct));
+        console.log('After Updating the object:');
+        console.log(userProduct); 
+        
+        function modifyProduct(objectName){
+            objectName.ProductName = 'Water Bottle';
+            objectName.Colour = 'Pink';
+            objectName.Cost = 225;
+            return `The name of product is ${ objectName.ProductName} which is ${objectName.Colour} in colour and its cost is ${objectName.Cost }`;
+        }
+
+    </script>
+</body>
+</html>
