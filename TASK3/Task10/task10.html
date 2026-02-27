@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attribute Manipulation Based on User Interaction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        input {
+            padding: 8px;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 8px 12px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Attribute Manipulation Based on User Interaction</h2>
+    <button id="toggleBtn">Enable / Disable Input</button>
+
+    <br><br>
+
+    <input type="text" id="textInput" placeholder="Type something here">
+
+    <script>
+        let button = document.getElementById("toggleBtn");
+        let input = document.getElementById("textInput");
+        button.addEventListener("click", function() {
+            if (input.hasAttribute("disabled")) {
+                input.removeAttribute("disabled");
+                console.log("Disabled attribute removed.");
+
+            } else {
+                input.setAttribute("disabled", "true");
+                console.log("Disabled attribute added.");
+
+            }
+            console.log("Has disabled attribute:", input.hasAttribute("disabled"));
+        });
+    </script>
+
+</body>
+</html>
