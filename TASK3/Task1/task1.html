@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>User Profile Object Manipulation</title>
+</head>
+<body>
+    <h1>User Profile Object Manipulation</h1>
+    <script>
+        let dynamicProperty = 'nativeState';
+        const userProfile = {
+            name : 'Venila',
+            age : 10,
+            email : 'venila@example.com',
+            isActive : false
+        };
+
+        userProfile.name = 'Venila Varshini M';
+        userProfile.age = 19;
+        userProfile['email'] = 'varshinivenila@gmail.com';
+        userProfile['isActive'] = true;
+        userProfile[dynamicProperty] = 'TamilNadu';
+        console.log(userProfile);
+
+        console.log('Name: ' + userProfile.name);
+        console.log('Age: ' + userProfile.age);
+        console.log('Email: ' + userProfile.email);
+        console.log('isActive: '+ userProfile.isActive);
+        console.log('State: '+ userProfile[dynamicProperty]);
+    </script>
+</body>
+</html>
