@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Traversal</title>
+</head>
+<body>
+
+    <h1>DOM Traversal</h1>
+
+    <div class="box">
+        <p class="item">First Item</p>
+        <p class="item" id="middle">Middle Item</p>
+        <p class="item">Last Item</p>
+    </div>
+
+    <script>
+        let middleItem = document.getElementById("middle");
+        let parent = middleItem.parentElement;
+        parent.style.backgroundColor = "lightblue";
+        let firstChild = parent.firstElementChild;
+        firstChild.textContent = "First Item (Updated)";
+        firstChild.style.color = "red";
+        let nextSibling = middleItem.nextElementSibling;
+        nextSibling.textContent = "Last Item (Changed)";
+        nextSibling.style.fontWeight = "bold";
+        middleItem.style.backgroundColor = "green";
+    </script>
+
+</body>
+</html>
