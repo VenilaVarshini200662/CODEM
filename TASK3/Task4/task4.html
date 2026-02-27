@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Looping Through Student Marks</title>
+</head>
+<body>
+    <h1>Looping Through Student Marks</h1>
+
+    <script>
+        const studentMarkDetails = {
+            Venila : 98,
+            Raj : 56,
+            Shinchan : 33,
+            Janaki : 80,
+            Prabu : 74
+        }
+        const objKeys = Object.keys(studentMarkDetails);
+        let passMark = 35;
+        let passStatus = '';
+        for( let i = 0 ; i < objKeys.length  ; i++){
+            if(studentMarkDetails[objKeys[i]] >= passMark)
+                passStatus = 'Pass';
+            else
+                passStatus = 'Fail';
+
+            console.log(`
+            Student name: ${objKeys[i]}
+            Mark: ${studentMarkDetails[objKeys[i]]}
+            Status: ${passStatus}`
+            )
+        }
+    </script>
+</body>
+</html>
