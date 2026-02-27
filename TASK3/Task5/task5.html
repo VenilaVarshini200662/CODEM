@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Object Methods Using this</title>
+</head>
+<body>
+    <h1>Object Methods Using this</h1>
+
+    <script>
+        const objWithMethod = {
+            name : 'Venila Varshini',
+            place : 'KanyaKumari',
+            method1 : function (){
+                this.place = 'GCE Tirunelveli';
+                console.log(objWithMethod.place);
+            }
+        }
+        objWithMethod.method1();
+        console.log(objWithMethod);
+
+    </script>
+</body>
+</html>
