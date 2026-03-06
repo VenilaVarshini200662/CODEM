@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Price Calculator</title>
+
+<style>
+    body{
+        background-color: antiquewhite;
+    }
+    .container{
+        width:400px;
+    }
+    .section{
+        margin-bottom:20px;
+    }
+    h3{
+        margin-bottom:10px;
+        text-decoration: underline;
+    }
+</style>
+</head>
+
+<body>
+<br>
+<h1>Price Calculator</h1>
+<br>
+<div class="container">
+    <div class="section">
+        <h3>Prices</h3>
+        <div id="priceList"></div>
+    </div>
+    <br>
+    <div class="section">
+        <h3>Calculation</h3>
+        <div id="calculation"></div>
+    </div>
+
+</div>
+
+<script>
+        const prices = [100,200,300];
+        const priceList = document.getElementById("priceList");
+        const calculation = document.getElementById("calculation");
+        let total = 0;
+        for(let i=0;i<prices.length;i++){
+            const p = document.createElement("p");
+            p.textContent= "Price: " + prices[i];
+            priceList.appendChild(p);
+            total = total + prices[i];
+        }
+        const totalText = document.createElement("p");
+        totalText.textContent = "Total = " + total;
+        calculation.appendChild(totalText);
+        const tax = total * 0.10;
+        const afterTax = total + tax;
+        const taxText= document.createElement("p");
+        taxText.textContent = "Tax (10%) = " + tax;
+        calculation.appendChild(taxText);
+        const discount =total * 0.05;
+        const final = afterTax - discount;
+        const discountText = document.createElement("p");
+        discountText.textContent = "Discount (5%) = " + discount;
+        calculation.appendChild(discountText);
+        const finalText = document.createElement("p");
+        finalText.textContent = "Final Price = " + final;
+        calculation.appendChild(finalText);
+    </script>
+</body>
+</html>
