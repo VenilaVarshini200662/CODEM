@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Manual Pagination</title>
+    <style>
+        body{
+            background-color: rgb(165, 202, 181);
+            font-size:25px;
+        }
+        h1{
+            font-size:30px;
+        }
+        li{
+            margin:10px;
+            padding:8px;
+        }
+        button{
+            font-size:18px;
+            padding:8px;
+            margin:10px;
+        }
+    </style>
+</head>
+<body><br>
+    <h1>Manual Pagination</h1><br>
+    <ul class="itemList"></ul>
+    <button class="prevBtn" onclick="previousPage()">Previous</button>
+    <button class="nextBtn" onclick="nextPage()">Next</button>
+<script>
+    const allItems = [
+        1,2,3,4,5,6,7,8,9,10,
+        11,12,13,14,15,16,17,18,19,20
+    ];
+    let itemListElement = document.querySelector(".itemList");
+    let prevBtnElement= document.querySelector(".prevBtn");
+    let nextBtnElement= document.querySelector(".nextBtn");
+    let currentPage = 1;
+    let itemsPerPage = 5;
+
+    function renderItems(){
+        itemListElement.innerHTML= "";
+        let startIndex= (currentPage - 1) * itemsPerPage;
+        let endIndex = startIndex + itemsPerPage;
+        for(let i = startIndex; i < endIndex && i < allItems.length; i++){
+            const listItem = document.createElement("li");
+            listItem.textContent = allItems[i];
+            itemListElement.appendChild(listItem);
+        }
+
+        if(currentPage === 1){
+            prevBtnElement.disabled= true;
+        }
+        else{
+            prevBtnElement.disabled = false;
+        }
+
+        if(endIndex >= allItems.length){
+            nextBtnElement.disabled = true;
+        }
+        else{
+            nextBtnElement.disabled = false;
+        }
+
+    }
+    renderItems();
+
+    function nextPage(){
+        currentPage++;
+        renderItems();
+    }
+
+    function previousPage(){
+        currentPage--;
+        renderItems();
+    }
+
+</script>
+</body>
+</html>
+
