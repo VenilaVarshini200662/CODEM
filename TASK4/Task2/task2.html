@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Multi-Filter Product List</title>
+    <style>
+        body{
+            background-color:azure;
+        }
+        table,tr,td,th{
+            border : 1px solid black;
+            border-collapse : collapse;
+            text-align: center;
+            padding : 10px;  
+        }
+
+        select{
+            width: 150px;
+            padding:5px;
+        }
+        input{
+            padding : 5px;
+        }
+        button{
+            background-color: rgb(30, 179, 30);
+            border-radius: 5px;
+            padding:5px;
+            width: 80px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Multi-Filter Product List</h1><br>
+    <div class="productList">
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                </tr>
+            </thead>
+            <tbody class="tableContent"></tbody>
+            <tr></tr>
+        </table>
+    </div><br><br>
+    Category:<select class="categorySelection">
+        <option value="All">All</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Home Decor">Home Decor</option>
+        <option value="Clothing">Clothing</option>
+    </select>
+    &nbsp;Maximum price: <input id= "Max" type="number" name="MaxPrice" placeholder="Max price">
+    &nbsp;Minimum price: <input id="Min" type="number" name="MinPrice" placeholder="Min price">
+    &nbsp;<button onclick="filterProducts()">Filter</button>
+
+    <script>
+        let tableContentElement = document.querySelector('.tableContent');
+        
+        let products = [
+            {name:"Laptop", price:50000, category:"Electronics"},
+            {name:"Shirt", price:1200, category:"Clothing"},
+            {name:"Phone", price:15000, category:"Electronics"},
+            {name:"Flowervase", price:350, category:"Home Decor"},
+            {name:"Wall Art", price:165, category:"Home Decor"}
+        ]
+
+        function displayProducts(productsArray){
+            for( let i=0; i< productsArray.length;i++){
+                const row = document.createElement('tr');
+                const nameCell = document.createElement('td');
+                nameCell.textContent = productsArray[i].name;
+                const priceCell = document.createElement('td');
+                priceCell.textContent = productsArray[i].price;
+                const catCell = document.createElement('td');
+                catCell.textContent = productsArray[i].category;
+                row.appendChild(nameCell);
+                row.appendChild(priceCell);
+                row.appendChild(catCell);
+                tableContentElement.appendChild(row);
+            }
+        }
+        displayProducts(products);
+
+        function filterProducts(){
+            let categoryValue = document.querySelector('.categorySelection').value;
+            let MaxValue = Number(document.getElementById('Max').value);
+            let MinValue = Number(document.getElementById('Min').value);
+            let filterArray = [];
+            
+            tableContentElement.innerHTML = '';
+
+            for(let i = 0; i < products.length; i++){
+
+                let categoryMatch = (categoryValue === 'All' || categoryValue === products[i].category);
+                let minMatch = (!MinValue || products[i].price >= MinValue);
+                let maxMatch = (!MaxValue || products[i].price <= MaxValue);
+
+                if(categoryMatch && minMatch && maxMatch){
+                    filterArray.push(products[i]);
+                }
+            }
+
+            if(filterArray.length === 0){
+                tableContentElement.innerHTML ='<tr><td colspan="3">No products found</td></tr>';
+            } else {
+                displayProducts(filterArray);
+            }
+        }
+    </script>
+</body>
+</html>
