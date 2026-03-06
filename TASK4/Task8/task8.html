@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Attendance Tracker</title>
+    <style>
+        body{
+            background-color: rgb(100, 17, 85);
+            color:white;
+            font-size:25px;
+        }
+        table,th,td,tr{
+            border:2px solid white;
+            border-collapse:collapse;
+            padding:20px;
+        }
+        h1{
+            font-size:30px;
+        }
+        .switch{
+            position: relative;
+            display: inline-block;
+            width:60px;
+            height:30px;
+        }
+        .switch input{
+            opacity:0;
+            width:0;
+            height:0;
+        }
+        .slider{
+            position:absolute;
+            cursor:pointer;
+            top:0;
+            left:0;
+            right:0;
+            bottom:0;
+            background-color:red;
+            transition:.3s;
+            border-radius:30px;
+        }
+        .slider:before{
+            position:absolute;
+            content:"";
+            height:22px;
+            width:22px;
+            left:4px;
+            bottom:4px;
+            background-color:white;
+            transition:.3s;
+            border-radius:50%;
+        }
+        input:checked + .slider{
+            background-color:green;
+        }
+
+        input:checked + .slider:before{
+            transform:translateX(28px);
+        }
+    </style>
+</head>
+<body><br>
+<center>
+    <h1>Attendance Tracker</h1>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody class="tableBody"></tbody>
+    </table>
+    <br>
+    <p class="count"></p>
+</center>
+
+<script>
+
+    const students = [
+        { name: "Ali", present: true },
+        { name: "Sara", present: false }
+    ]
+    let tableBodyElement = document.querySelector('.tableBody');
+    let countElement = document.querySelector('.count');
+
+    function renderTable(){
+        tableBodyElement.innerHTML='';
+        let presentCount= 0;
+        let absentCount= 0;
+        for(let i=0; i<students.length; i++){
+            const row = document.createElement('tr');
+            const nameCell = document.createElement('td');
+            nameCell.textContent = students[i].name;
+            const statusCell = document.createElement('td');
+            if(students[i].present === true){
+                statusCell.textContent = "Present";
+                presentCount++;
+            }
+            else{
+                statusCell.textContent= "Absent";
+                absentCount++;
+            }
+            const buttonCell = document.createElement('td');
+
+    buttonCell.innerHTML = `
+    <label class="switch">
+        <input type="checkbox" onchange="toggleAttendance(${i})">
+        <span class="slider"></span>
+    </label>`;
+
+    if(students[i].present === true){
+        buttonCell.querySelector("input").checked = true;
+    }
+            row.appendChild(nameCell);
+            row.appendChild(statusCell);
+            row.appendChild(buttonCell);
+            tableBodyElement.appendChild(row);
+        }
+
+        countElement.textContent= "Present: " + presentCount + "   Absent: " + absentCount;
+    }
+    renderTable();
+
+    function toggleAttendance(index){
+        if(students[index].present === true){
+            students[index].present = false;
+        }
+        else{
+            students[index].present = true;
+        }
+        renderTable();
+    }
+
+</script>
+</body>
+</html>
