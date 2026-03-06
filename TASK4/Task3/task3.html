@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Editable table</title>
+    <style>
+        body{
+            background-color: rgb(0, 0, 0);
+            color:white;
+            font-size: 25px;
+        }
+        h1{
+            font-size: 30px;
+        }
+        table,td,tr,th{
+            border:1px solid white;
+            border-collapse: collapse;
+            padding: 10px;
+            
+        }
+        .Edit{
+            background-color: rgb(223, 75, 75);
+            border-radius: 5px;
+        }
+        .Save{
+            background-color: rgb(82, 205, 82);
+            border-radius: 5px;
+        }
+        input{
+            font-size: 20px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Editable table</h1><br><br>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody class="tableBody"></tbody>
+    </table>
+
+    <script>
+        let tableBodyElement= document.querySelector('.tableBody');
+        const users = [
+            { name: "Ali", age: 22, email: "ali@mail.com" },
+            { name: "Sara", age: 25, email: "sara@mail.com" },
+            { name: "Venila", age: 19, email: "venila@mail.com"},
+            { name: "Nila", age: 20, email: "nila@mail.com"}
+        ]
+        function renderTable(){
+            for(let i=0; i<users.length; i++){
+                const row = document.createElement('tr');
+                const nameCell = document.createElement('td');
+                nameCell.textContent = users[i].name;
+                const ageCell = document.createElement('td');
+                ageCell.textContent = users[i].age;
+                const emailCell = document.createElement('td');
+                emailCell.textContent = users[i].email;
+                const buttonCell = document.createElement('td');
+                buttonCell.innerHTML = `<button class = "Edit" onclick="modifyDetails(${i})">Edit</button>`;
+                row.appendChild(nameCell);
+                row.appendChild(ageCell);
+                row.appendChild(emailCell);
+                row.appendChild(buttonCell);
+                tableBodyElement.appendChild(row);
+            }
+        }
+        renderTable();
+
+        function modifyDetails(userIndex){
+            const row = tableBodyElement.children[userIndex];
+
+            const nameCell = row.children[0];
+            const ageCell = row.children[1];
+            const emailCell = row.children[2];
+            const buttonCell = row.children[3];
+
+            nameCell.innerHTML = `<input type="text" value="${users[userIndex].name}">`;
+            ageCell.innerHTML = `<input type="number" value="${users[userIndex].age}">`;
+            emailCell.innerHTML = `<input type="email" value="${users[userIndex].email}" disabled>`;
+            buttonCell.innerHTML = `<button class="Save" onclick="saveDetails(${userIndex})">Save</button>`;
+         }
+
+        function saveDetails(userIndex){
+            const row = tableBodyElement.children[userIndex];
+            const newName = row.children[0].querySelector("input").value;
+            const newAge = row.children[1].querySelector("input").value;
+            users[userIndex].name = newName;
+            users[userIndex].age = Number(newAge);
+            tableBodyElement.innerHTML ='';
+            renderTable();
+        }
+    </script>
+</body>
+</html>
