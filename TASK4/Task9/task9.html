@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Inventory Manager</title>
+    <style>
+        body{
+            background-color:rgb(92, 17, 102);
+            color:white;
+            font-size:25px;
+        }
+        h1{
+            font-size:35px;
+        }
+        table,th,td,tr{
+            border:2px solid white;
+            border-collapse:collapse;
+            padding:15px;
+        }
+        button{
+            padding:5px;
+            font-size:18px;
+            margin:5px;
+            border-radius: 5px;
+        }
+        .increase{
+            background-color:rgb(41, 189, 41);
+        }
+        .decrease{
+            background-color:rgb(206, 71, 71);
+        }
+    </style>
+</head>
+<body><br>
+    <center>
+    <h1>Inventory Manager</h1>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody class="tableBody"></tbody>
+    </table>
+    </center>
+    <script>
+        const inventory= [
+        { product: "Pen", quantity: 10 },
+        { product: "Notebook", quantity: 5 },
+        { product: "Eraser", quantity: 0 }
+        ]
+        let tableBodyElement = document.querySelector('.tableBody');
+        function renderTable(){
+            tableBodyElement.innerHTML = '';
+            for(let i=0; i<inventory.length; i++){
+                const row = document.createElement('tr');
+                const productCell = document.createElement('td');
+                productCell.textContent = inventory[i].product;
+                const quantityCell = document.createElement('td');
+                quantityCell.textContent = inventory[i].quantity;
+                const buttonCell = document.createElement('td');
+                buttonCell.innerHTML=`<button class="increase" onclick="increaseQty(${i})">Increase</button>
+                <button class="decrease" onclick="decreaseQty(${i})">Decrease</button>`;
+                row.appendChild(productCell);
+                row.appendChild(quantityCell);
+                row.appendChild(buttonCell);
+                tableBodyElement.appendChild(row);
+            }
+        }
+        renderTable();
+
+        function increaseQty(index){
+            inventory[index].quantity++;
+            renderTable();
+        }
+        function decreaseQty(index){
+            if(inventory[index].quantity > 0){
+                inventory[index].quantity--;
+            }
+            renderTable();
+        }
+    </script>
+</body>
+</html>
