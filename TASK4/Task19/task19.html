@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Dashboard Summary</title>
+
+<style>
+    body{
+        background-color:rgb(50, 54, 5);
+        color:white;
+        font-size:25px;
+    }
+    h1{
+        font-size:35px;
+    }
+    .dashboard{
+        display:flex;
+        gap:30px;
+        margin-top:30px;
+    }
+
+    .card{
+        background-color:rgb(91, 96, 12);
+        padding:20px;
+        border-radius:10px;
+        width:200px;
+        text-align:center;
+    }
+</style>
+</head>
+
+<body><br>
+    <h1>Dashboard Summary</h1>
+    <br>
+    <div class="dashboard"></div>
+
+    <script>
+        const users= [1,2,3,4];
+        const orders= [500,1200,800];
+        const revenue= [5000,3000];
+        const dashboardElement= document.querySelector(".dashboard");
+        function renderDashboard(){
+            dashboardElement.innerHTML = "";
+            let totalUsers = 0;
+            let totalOrders = 0;
+            let totalRevenue = 0;
+            for(let i=0;i<users.length;i++){
+                totalUsers++;
+            }
+
+            for(let i=0;i<orders.length;i++){
+                totalOrders++;
+            }
+
+            for(let i=0;i<revenue.length;i++){
+                totalRevenue = totalRevenue + revenue[i];
+            }
+
+            const userCard = document.createElement("div");
+            userCard.className = "card";
+            userCard.textContent = "Total Users: " + totalUsers;
+            const orderCard= document.createElement("div");
+            orderCard.className = "card";
+            orderCard.textContent = "Total Orders: " + totalOrders;
+            const revenueCard = document.createElement("div");
+            revenueCard.className = "card";
+            revenueCard.textContent = "Total Revenue: ₹" + totalRevenue;
+            dashboardElement.appendChild(userCard);
+            dashboardElement.appendChild(orderCard);
+            dashboardElement.appendChild(revenueCard);
+
+        }
+
+        renderDashboard();
+        setTimeout(function(){
+            users.push(5);
+            orders.push(900);
+            revenue.push(2000);
+            renderDashboard();
+        },3000);
+    </script>
+</body>
+</html>
