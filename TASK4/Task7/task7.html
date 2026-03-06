@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Dynamic Form Builder</title>
+<style>
+    body{
+        background-color: rgb(7, 58, 80);
+        color:white;
+        font-size:25px;
+    }
+    h1{
+        font-size:30px;
+    }
+    label{
+        display:block;
+        margin-top:15px;
+        
+    }
+    input{
+        font-size:20px;
+        padding:10px;
+        margin-top:5px;
+        width:500px;
+        border-radius: 10px;
+    }
+    button{
+        display:block; 
+        margin-top:45px;
+        padding:10px;
+        font-size:18px;
+        border-radius: 10px;
+        width:200px;
+        background-color: rgb(23, 23, 94);
+        color:white;
+    }
+</style>
+</head>
+<body>
+        <br>
+        <center>
+            <h1>Dynamic Form Builder</h1><br><br>
+            <form class="formContainer" onsubmit="submitForm(event)">
+            <button type="submit">Submit</button>
+            </form>
+        </center>
+
+        <script>
+            const fields = [
+            { type: "text", label: "Name" },
+            { type: "email", label: "Email" },
+            { type: "number", label: "Age" }
+            ];
+            let formElement = document.querySelector(".formContainer");
+            let submitButton = formElement.querySelector("button");
+            function buildForm(){
+                for(let i=0; i<fields.length; i++){
+                    const labelElement= document.createElement("label");
+                    labelElement.textContent = fields[i].label;
+                    const inputElement = document.createElement("input");
+                    inputElement.type= fields[i].type;
+                    inputElement.classList.add("inputField");
+                    formElement.insertBefore(labelElement, submitButton);
+                    formElement.insertBefore(inputElement, submitButton);
+                }
+            }
+            buildForm();
+
+            function submitForm(event){
+                event.preventDefault();
+                const inputElements = document.querySelectorAll(".inputField");
+                let formData = [];
+                for(let i=0; i<inputElements.length; i++){
+                    formData.push(inputElements[i].value);
+                }
+                console.log("Stored Data:", formData);
+            }
+
+    </script>
+
+</body>
+</html>
