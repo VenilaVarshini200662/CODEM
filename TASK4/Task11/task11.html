@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Sorting Visualizer</title>
+    <style>
+        body{
+            background-color:black;
+            color:whitesmoke;
+            font-size:25px;
+        }
+        h1{
+            font-size: 35px;
+        }
+        button{
+            padding:10px;
+            font-size:18px;
+            margin-bottom:20px;
+            border-radius: 10px;
+        }
+        .numbers{
+            font-size:30px;
+            margin-top:20px;
+        }
+        .step{
+            margin-top:10px;
+        }
+    </style>
+</head>
+<body>
+<br>
+    <h1>Sorting Visualizer</h1><br>
+    <button onclick="startSorting()">Start Sorting</button>
+    <div class="numbers"></div>
+<script>
+        let numbers = [7,9,1,5,2,4,3];
+        const numbersContainer = document.querySelector('.numbers');
+        function displayNumbers(arr){
+            const step = document.createElement('div');
+            let text = "";
+            for(let i=0; i<arr.length; i++){
+                text += arr[i] + " ";
+            }
+            step.textContent = text;
+            step.className= "step";
+            numbersContainer.appendChild(step);
+        }
+        displayNumbers(numbers);
+
+        function startSorting(){
+            let arr = [...numbers];
+            for(let i=0; i<arr.length; i++){
+                for(let j=0; j<arr.length-1; j++){
+                    if(arr[j] > arr[j+1]){
+                        let temp= arr[j];
+                        arr[j] = arr[j+1];
+                        arr[j+1] = temp;
+                        displayNumbers(arr);
+                    }
+                }
+            }
+        }                                           
+    </script>
+</body>
+</html>
