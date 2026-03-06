@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Search + Highlight</title>
+    <style>
+        body{
+            background-color: rgb(34, 16, 79);
+            color:white;
+            font-size:25px;
+        }
+        h1{
+            font-size:30px;
+        }
+        input{
+            font-size:20px;
+            padding:5px;
+            margin-bottom:20px;
+            width:550px;
+            border-radius: 10px;
+        }
+        li{
+            margin:10px;
+            padding:8px;
+        }
+        .highlight{
+            background-color: rgb(148, 89, 27);
+            border-radius:5px;
+            padding:5px;
+            width:500px;
+        }
+    </style>
+</head>
+<body><br>
+    <center><h1>Search + Highlight</h1><br>
+        <input type="text" placeholder="Search here..." onkeyup="searchText()">
+        <ul class="textList"></ul>
+        <p class="message"></p>
+    </center>
+    <script>
+        const texts= ["JavaScript","Java","Python","React","NodeJS","C++","HTML"];
+        let textListElement = document.querySelector(".textList");
+        let messageElement= document.querySelector(".message");
+        let inputElement= document.querySelector("input");
+        function displayTexts(list){
+            textListElement.innerHTML = "";
+            for(let i=0; i<list.length; i++){
+                const listItem = document.createElement("li");
+                listItem.textContent = list[i];
+                listItem.classList.add("highlight");
+                textListElement.appendChild(listItem);
+            }
+        }
+        displayTexts(texts);
+
+        function searchText(){
+            let searchValue = inputElement.value.toLowerCase();
+            textListElement.innerHTML = "";
+            let matchFound= false;
+            for(let i=0; i<texts.length; i++){
+                let currentText= texts[i].toLowerCase();
+                if(currentText.includes(searchValue)){
+                    const listItem = document.createElement("li");
+                    listItem.textContent = texts[i];
+                    listItem.classList.add("highlight");
+                    textListElement.appendChild(listItem);
+                    matchFound = true;
+                }
+            }
+
+            if(matchFound === false){
+                messageElement.textContent = "No results found.";
+            }
+            else{
+                messageElement.textContent= "";
+            }
+        }
+    </script>
+</body>
+</html>
