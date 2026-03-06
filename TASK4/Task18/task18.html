@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Drag Order Simulator</title>
+
+<style>
+
+    body{
+    background-color: rgb(60, 22, 22);
+    color: whitesmoke;
+    font-size: 25px;
+    }
+    h1{
+        font-size: 35px;
+    }
+    .container{
+        width:400px;
+    }
+    ul{
+        padding:0;
+    }
+    li{
+        list-style:none;
+        border:2px solid whitesmoke;
+        padding:10px;
+        margin:15px 0;
+        border-radius: 5px;
+    }
+    button{
+        margin-left:20px;
+        border-radius: 5px;
+    }
+</style>
+</head>
+<body>
+<br>
+<center>
+    <h2>Drag Order Simulator</h2><br>
+    <div class="container">
+    <ul id="itemList"></ul>
+    </div>
+</center>
+    <script>
+        const items = ["Item A","Item B","Item C","Item D"];
+        const listElement = document.getElementById("itemList");
+        function renderList(){
+            listElement.innerHTML = "";
+            for(let i=0;i<items.length;i++){
+                const li = document.createElement("li");
+                li.textContent = items[i];
+                const upBtn = document.createElement("button");
+                upBtn.textContent= "Move Up";
+                upBtn.onclick = function(){
+                    moveUp(i);
+                };
+
+                if(i === 0){
+                    upBtn.disabled = true;
+                }
+
+                const downBtn=document.createElement("button");
+                downBtn.textContent ="Move Down";
+                downBtn.onclick = function(){
+                    moveDown(i);
+                };
+
+                if(i === items.length - 1){
+                    downBtn.disabled = true;
+                }
+                li.appendChild(upBtn);
+                li.appendChild(downBtn);
+                listElement.appendChild(li);
+            }
+        }
+        renderList();
+
+        function moveUp(index){
+            if(index === 0){
+                return;
+            }
+            let temp = items[index];
+            items[index] = items[index-1];
+            items[index-1] = temp;
+            renderList();
+        }
+
+        function moveDown(index){
+            if(index === items.length-1){
+                return;
+            }
+            let temp= items[index];
+            items[index] = items[index+1];
+            items[index+1] = temp;
+            renderList();
+        }
+    </script>
+</body>
+</html>
