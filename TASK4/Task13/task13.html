@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Comment System</title>
+
+<style>
+
+    body{
+        background-color:#343333;
+        color:white;
+        font-size:20px;
+        font-family:Arial;
+        display:flex;
+        justify-content:center;
+    }
+    .container{
+        width:600px;
+        background-color:#1f1f1f;
+        padding:25px;
+        margin-top:40px;
+        border-radius:10px;
+    }
+    h1{
+        text-align:center;
+    }
+    .inputSection{
+        margin-top:20px;
+    }
+    input{
+        width:70%;
+        padding:10px;
+        font-size:16px;
+    }
+    button{
+        padding:10px;
+        font-size:16px;
+        margin-left:10px;
+        cursor:pointer;
+    }
+    .commentsBox{
+        margin-top:25px;
+        border-top:1px solid gray;
+        padding-top:15px;
+    }
+    .comment{
+        background-color:#2a2a2a;
+        padding:10px;
+        margin-top:10px;
+        border-radius:5px;
+    }
+    .noComment{
+        color:gray;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+    <h1>Comment System</h1><br>
+    <div class="inputSection"></div><br>
+    <p>Latest Comments</p>
+    <div class="commentsBox"></div>
+    </div>
+
+<script>
+        const comments = [];
+        const inputSection = document.querySelector(".inputSection");
+        const commentsBox = document.querySelector(".commentsBox");
+        const input = document.createElement("input");
+        input.placeholder = "Write a comment...";
+        const submitButton= document.createElement("button");
+        submitButton.textContent = "Submit";
+        inputSection.appendChild(input);
+        inputSection.appendChild(submitButton);
+        submitButton.onclick = function(){
+            addComment();
+        };
+
+        function addComment(){
+            const text = input.value;
+            if(text !== ""){
+                comments.push(text);
+            }
+            input.value = "";
+            displayComments();
+        }
+        function displayComments(){
+            commentsBox.innerHTML = "";
+            if(comments.length === 0){
+                const noComment = document.createElement("p");
+                noComment.textContent = "No Comments In the Array";
+                noComment.className = "noComment";
+                commentsBox.appendChild(noComment);
+                return;
+            }
+            let count= 0;
+            for(let i = comments.length-1; i >= 0; i--){
+                const commentElement = document.createElement("div");
+                commentElement.className = "comment";
+                commentElement.textContent = comments[i];
+                commentsBox.appendChild(commentElement);
+                count++;
+                if(count === 5){
+                    break;
+                }
+            }
+        }
+        displayComments();
+    </script>
+</body>
+</html>
