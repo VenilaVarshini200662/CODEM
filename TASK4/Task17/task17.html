@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Expense Tracker</title>
+
+<style>
+    body{
+        background-color: rgb(127, 117, 127);
+        font-size: 25px;
+    }
+    .container{
+        width:500px;
+    }
+    h1{
+        font-size:35px;
+    }
+    table,th,td{
+        width:100%;
+        border: 2px solid black;
+        border-collapse: collapse;
+        margin-top:15px;
+        padding:10px;
+        text-align:center;
+    }
+    .summary{
+        margin-top:20px;
+    }
+
+</style>
+
+</head>
+
+<body>
+    <br>
+    <h2>Expense Tracker</h2>
+    <br>
+    <div class="container">
+    <table id="expenseTable">
+    <tr>
+    <th>Category</th>
+    <th>Amount</th>
+    </tr>
+    </table><br>
+    <div id="summary" class="summary"></div>
+    </div>
+
+    <script>
+        const expenses = [
+        { category: "Food", amount: 200 },
+        { category: "Travel", amount: 500 },
+        { category: "Food", amount: 300 }
+        ];
+        const table= document.getElementById("expenseTable");
+        const summary = document.getElementById("summary");
+        let foodTotal = 0;
+        let travelTotal = 0;
+        let grandTotal = 0;
+        for(let i=0;i<expenses.length;i++){
+            const row= document.createElement("tr");
+            const categoryCell = document.createElement("td");
+            categoryCell.textContent = expenses[i].category;
+            const amountCell = document.createElement("td");
+            amountCell.textContent= "₹" + expenses[i].amount;
+            row.appendChild(categoryCell);
+            row.appendChild(amountCell);
+            table.appendChild(row);
+            if(expenses[i].category === "Food"){
+                foodTotal += expenses[i].amount;
+            }
+            if(expenses[i].category === "Travel"){
+                travelTotal += expenses[i].amount;
+            }
+            grandTotal += expenses[i].amount;
+        }
+
+        summary.innerHTML = `
+        <p><b>Food:</b> ₹${foodTotal}</p>
+        <p><b>Travel:</b> ₹${travelTotal}</p>
+        <p><b>Total:</b> ₹${grandTotal}</p>
+        `;
+
+    </script>
+</body>
+</html>
