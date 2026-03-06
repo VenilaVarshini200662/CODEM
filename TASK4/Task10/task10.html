@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Live Character Counter</title>
+    <style>
+        body{
+            background-color:rgb(63, 19, 19);
+            color:white;
+            font-size:25px;
+        }
+        h1{
+            font-size: 35px;
+        }
+        textarea{
+            font-size:20px;
+            padding:10px;
+            width:400px;
+            height:200px;
+            border-radius: 10px;
+        }
+        button{
+            padding:8px;
+            font-size:18px;
+            margin-top:10px;
+            border-radius: 5px;
+            width:150px;
+        }
+    </style>
+</head>
+<body><br>
+        <h1>Live Character Counter</h1><br>
+        <div class="container"></div>
+    <script>
+        const inputs = [];
+        const container= document.querySelector('.container');
+        const textArea= document.createElement('textarea');
+        textArea.placeholder= "Type something...";
+        textArea.oninput = updateCount;
+        const submitButton = document.createElement('button');
+        submitButton.textContent = "Submit";
+        submitButton.onclick = saveInput;
+        const charCount = document.createElement('p');
+        const longestText = document.createElement('p');
+
+        container.appendChild(textArea);
+        container.appendChild(document.createElement("br"));
+        container.appendChild(submitButton);
+        container.appendChild(charCount);
+        container.appendChild(longestText);
+
+        function updateCount(){
+
+            const text = textArea.value;
+
+            charCount.textContent = "Characters: " + text.length;
+
+            let longest = "";
+
+            for(let i=0; i<inputs.length; i++){
+
+                if(inputs[i].length > longest.length){
+                    longest = inputs[i];
+                }
+
+            }
+
+            if(text.length > longest.length){
+                longest = text;
+            }
+
+            longestText.textContent = "Longest Input: " + longest;
+        }
+
+        function saveInput(){
+
+            const text = textArea.value;
+
+            if(text !== ""){
+                inputs.push(text);
+            }
+            console.log(inputs);
+            textArea.value = "";
+            updateCount();
+
+        }
+    </script>
+</body>
+</html>
