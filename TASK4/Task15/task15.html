@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Password Rule Checker</title>
+<style>
+    body{
+        font-family: Arial;
+    }
+    .container{
+        width:400px;
+    }
+    input{
+        width:100%;
+        padding:8px;
+        margin-top:10px;
+    }
+    .pass{
+        color:green;
+    }
+    .fail{
+        color:red;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+    <br>
+    <h2>Password Rule Checker</h2>
+    <input type="password" id="password" placeholder="Enter password" onkeyup="checkPassword()">
+    <h3>Password Rules</h3>
+    <ul id="rulesList"></ul>
+    </div>
+    <script>
+        const rules = [
+            { rule: "Minimum 8 characters", isPassed: false },
+            { rule: "At least one uppercase letter", isPassed: false },
+            { rule: "At least one number", isPassed: false },
+            { rule: "At least one special character", isPassed: false }
+        ];
+        const rulesList = document.getElementById("rulesList");
+        function displayRules(){
+            rulesList.innerHTML = "";
+            for(let i=0;i<rules.length;i++){
+                const li= document.createElement("li");
+                li.textContent = rules[i].rule;
+                if(rules[i].isPassed){
+                li.className = "pass";
+                }else{
+                li.className = "fail";
+                }
+                rulesList.appendChild(li);
+            }
+        }
+
+        function checkPassword(){
+            const password = document.getElementById("password").value;
+            rules[0].isPassed= password.length >= 8;
+            rules[1].isPassed= /[A-Z]/.test(password);
+            rules[2].isPassed= /[0-9]/.test(password);
+            rules[3].isPassed= /[!@#$%^&*(),.?":{}|<>]/.test(password);
+            let failedRules = [];
+            for(let i=0;i<rules.length;i++){
+                if(!rules[i].isPassed){
+                failedRules.push(rules[i].rule);
+                }
+            }
+            console.log(failedRules);
+            displayRules();
+        }
+        displayRules();
+
+    </script>
+
+</body>
+</html>
