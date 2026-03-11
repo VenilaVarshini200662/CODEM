@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Function with default parameters</title>
+</head>
+<body>
+    <h1>Function with default parameters</h1>
+
+    <script>
+        function calculateDiscount(price, discountPercent = 10){
+            let discountAmount = (discountPercent/100) * price;
+            let finalPrice = price - discountAmount;
+            return finalPrice;
+        }
+
+        const withDiscount = calculateDiscount(1500, 30);
+        const withoutDiscount = calculateDiscount(1500);
+        console.log('With discount value passed, Final price is '+ withDiscount);
+        console.log('Without discount value passed, Final price is '+ withoutDiscount);
+    </script>
+</body>
+</html>
