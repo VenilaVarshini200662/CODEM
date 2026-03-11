@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Immediately invoked function expression</title>
+</head>
+<body>
+    <h1>Immediately invoked function expression</h1>
+
+    <script>
+        (function (){
+            let var1 = 62;
+            let add = var1+5;
+            console.log('Addition: '+ add);
+        })();
+        //console.log(var1);
+        //Uncaught ReferenceError: var1 is not defined . This error occurs on trying to access the variable var1.
+    </script>
+</body>
+</html>
