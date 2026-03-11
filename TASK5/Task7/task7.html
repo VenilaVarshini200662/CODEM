@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Form Validation - Email Format Check</title>
+    <style>
+        body{
+            background-color: rgb(75, 75, 96);
+        }
+        h1{
+            color:whitesmoke;
+        }
+        input{
+            width:500px;
+            padding:10px;
+            border-radius:10px;
+        }
+        form{
+            width:600px;
+            height:200px;
+            background-color: rgb(150, 148, 182);
+            padding:50px;
+            border-radius:10px;   
+        }
+        button{
+            width:200px;
+            height:40px;
+            border-radius:10px;
+            background-color: rgb(75, 75, 96);
+            color:whitesmoke;
+        }
+    </style>
+</head>
+<body><br>
+    <center><h1>Form Validation - Email Format Check</h1><br><br><br>
+    <form ><br>
+        <label>Name:</label> 
+        <input id="Name" type="text" placeholder="Enter your name"><br><br><br>
+        <label>Email:</label>
+        <input id="Email" type="email" placeholder="Enter your email" required><br><br><br>
+        <button type="submit" onclick="validateEmail(event)">Submit</button>
+    </form>
+    </center>
+
+    <script>
+       
+        function validateEmail(event){
+            const emailElement=document.getElementById('Email').value;
+            if(emailElement.includes('@') && emailElement.includes('.')){
+                console.log('Form submitted Successfully. (Valid Email)');
+            }
+            else{
+                console.log('Error..Invalid email');
+                event.preventDefault();
+            }
+
+        }
+    </script>
+</body>
+</html>
