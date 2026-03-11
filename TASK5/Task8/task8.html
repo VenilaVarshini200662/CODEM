@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Form Validation - Password length check</title>
+
+    <style>
+         body{
+            background-color: rgb(64, 105, 86);
+        }
+        h1{
+            color:whitesmoke;
+        }
+        input{
+            width:500px;
+            padding:10px;
+            border-radius:10px;
+        }
+        form{
+            width:600px;
+            height:200px;
+            background-color: rgb(136, 171, 141);
+            padding:50px;
+            border-radius:10px;   
+        }
+        button{
+            width:200px;
+            height:40px;
+            border-radius:10px;
+            background-color: rgb(64, 105, 86);
+            color:whitesmoke;
+        }
+    </style>
+</head>
+<body><br>
+    <center>
+        <h1>Form Validation - Password length check</h1><br><br><br>
+        <form id="passForm">
+            <label>Name:</label>
+            <input id="Name" type="text" placeholder="Enter your name"><br><br>
+            <label>Password:</label>
+            <input id="Password" type="password" placeholder="Enter password" required><br><br><br>
+            <button id="submitBtn" type="submit">Submit</button>
+        </form>
+    </center>
+
+    <script>
+       
+        const form = document.getElementById('passForm');
+        form.addEventListener("submit", function(event){
+            const passwordLength = document.getElementById('Password').value;
+            if(passwordLength.length >= 8){
+                console.log('Valid password length...');
+            }
+            else{
+                console.log('Invalid password length. Length should be atleast 8 characters');
+                event.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
