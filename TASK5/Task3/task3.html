@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Callback Function Implementation</title>
+</head>
+<body>
+    <h1>Callback Function Implementation</h1>
+
+    <script>
+        function processNumber( num, callbackFunction){
+            return callbackFunction(num);
+        }
+
+        function doubleNumber(num){
+            return num*2;
+        }
+
+        function halfNumber(num){
+            return num/2;
+        }
+
+        const result1 =processNumber(50,doubleNumber);
+        const result2 =processNumber(50,halfNumber);
+        console.log('Doubled: '+ result1);
+        console.log('Halved: '+ result2);
+    </script>
+</body>
+</html>
