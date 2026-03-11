@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Advanced function validation utility</title>
+    <style>
+        body{
+            background-color: rgb(156, 54, 74);
+        }
+        h1{
+            color:whitesmoke;
+        }
+        input{
+            width:500px;
+            padding:10px;
+            border-radius:10px;
+        }
+        form{
+            width:600px;
+            height:200px;
+            background-color: rgb(200, 111, 129);
+            padding:50px;
+            border-radius:10px;   
+        }
+        button{
+            width:200px;
+            height:40px;
+            border-radius:10px;
+            background-color: rgb(156, 54, 74);
+            color:whitesmoke;
+        }
+    </style>
+
+</head>
+<body>
+   
+    <center>
+         <br><h1>Advanced function validation utility</h1><br><br>
+        <form id="validateForm">
+            <label>Name: </label>
+            <input id="Name" type="text" placeholder="Enter your name"><br><br>
+            <label>Email: </label>
+            <input id="Email" type="text" placeholder="Enter your email"><br><br>
+            <label>Password:</label>
+            <input id="Password" type="password" placeholder="Enter password"><br><br><br>
+            <button id="submitBtn">Submit</button>
+        </form>
+    </center>
+
+    <script>
+        const formElement = document.getElementById('validateForm');
+        formElement.addEventListener("submit", function(event){
+           event.preventDefault();
+           validateForm();
+        });
+
+        function validateForm(){
+            const name = document.getElementById('Name').value;
+            const email = document.getElementById('Email').value;
+            const pass = document.getElementById('Password').value;
+            const emptyInput = checkEmptyInput(name,email,pass);
+            if(emptyInput){
+                var validEmail = validateEmail(email);
+                var validPass = validatePassword(pass);
+            if(validEmail && validPass)
+                console.log('Form submitted successfully..');
+            }
+        }
+
+        function checkEmptyInput(name,email,pass){
+            if(name == '' || email == '' || pass == ''){
+                console.log('Fill the required details..');
+                return false;
+            }
+            else
+                return true;
+        }
+
+        function validateEmail(email){
+            if(/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(email)){
+                console.log('Valid email');
+                return true;
+            }
+            else{
+                console.log('Invalid email');
+                return false;
+            }
+        }
+
+        function validatePassword(pass){
+            if(pass.length < 8){
+                console.log('Invalid Password. Length should be atleast 8 characters');
+                return false;
+            }
+            else{
+                console.log('Valid Password');
+                return true;
+            }
+        }
+    </script>
+</body>
+</html>
