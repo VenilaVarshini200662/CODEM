@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Combined form validation program</title>
+    <style>
+        body{
+            background-color: rgb(74, 70, 41);
+        }
+        h1{
+            color:whitesmoke;
+        }
+        input{
+            width:500px;
+            padding:10px;
+            border-radius:10px;
+        }
+        form{
+            width:600px;
+            height:200px;
+            background-color: rgb(131, 151, 77);
+            padding:50px;
+            border-radius:10px;   
+        }
+        button{
+            width:200px;
+            height:40px;
+            border-radius:10px;
+            background-color: rgb(74, 70, 41);
+            color:whitesmoke;
+        }
+    </style>
+</head>
+<body>
+    <center><br>
+    <h1>Combined form validation program</h1><br><br>
+    <form id="validateForm">
+        <label>Name: </label>
+        <input id="Name" type="text" placeholder="Enter your name"><br><br>
+        <label>Email: </label>
+        <input id="Email" type="email" placeholder="Enter your email"><br><br>
+        <label>Password:</label>
+        <input id="Password" type="password" placeholder="Enter password"><br><br><br>
+        <button id="submitBtn">Submit</button> 
+    </form>
+    </center>
+    <script>
+        const btnElement = document.getElementById('submitBtn');
+        btnElement.addEventListener("click", function(event){
+            event.preventDefault();
+            const name = document.getElementById('Name').value;
+            const email = document.getElementById('Email').value;
+            const pass = document.getElementById('Password').value;
+            if(name == '' || email == ''|| pass == ''){
+                console.log('Enter the required details..');
+            }
+            else if (!(/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(email)) || pass.length< 8){
+                if(!(/^[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}$/.test(email))){
+                    console.log('Invalid email.Enter valid email..');
+                }
+                if(pass.length< 8){
+                    console.log('Invalid password. Length should be atleast 8 characters');
+                }
+            }
+            else 
+                console.log('Required details are valid. Submitting...');
+            
+        });
+    </script>
+</body>
+</html>
