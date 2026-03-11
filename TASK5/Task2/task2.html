@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Function Expressions and arrow functions</title>
+</head>
+<body>
+    <h1>Function Expressions and arrow functions</h1>
+
+    <script>
+        const welcome = function(stringParameter){
+            return stringParameter.length;
+        }
+        let stringResult = welcome('Hello Everyone');
+
+        const arrowFunction = (num) => {
+            return num * num ;
+        };
+
+        let numResult = arrowFunction(7);
+
+        console.log('Length of the string is '+stringResult);
+        console.log('Square of the number is '+numResult);
+    </script>
+</body>
+</html>
