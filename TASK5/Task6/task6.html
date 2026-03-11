@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Form validation - Input presence check</title>
+    <style>
+        body{
+            background-color: rgb(89, 11, 103);
+            color:whitesmoke;
+        }
+        form{
+            margin:50px;
+            padding: 50px;
+            background-color: rgb(68, 6, 73);
+            width:550px;
+            border-radius: 10px;
+        }
+        input{
+            margin:10px;
+            padding:10px;
+            width: 500px;
+            border-radius: 5px;
+        }
+        button{
+            margin:20px;
+            width:150px;
+            padding:10px;
+            border-radius: 10px ;
+        }
+    </style>
+</head>
+<body><br>
+    <center><h1>Form validation - Input presence check</h1><br>
+    <form>
+        <input id="Username" type="text" name="username" placeholder="Enter your name"><br>
+        <input id="Email" type="email" name="email" placeholder="Enter your gmail"><br>
+        <button type="submit" onclick="validateForm(event)">Submit</button>
+    </form>
+    </center>
+
+    <script> 
+        function validateForm(event){
+            event.preventDefault();
+            let name =document.getElementById('Username').value;
+            let email =document.getElementById('Email').value;
+            if(name === '' || email === ''){
+                console.log('Please check whether you have entered your name or email in the respective fields or not..');
+            }
+            else{
+                console.log('Form submitted successfully');
+            }
+        }
+    </script>
+</body>
+</html>
