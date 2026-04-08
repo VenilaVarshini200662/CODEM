@@ -1,0 +1,13 @@
+Node.js is a powerful runtime environment that allows JavaScript to run outside the browser. 
+It is widely used for building fast and scalable server-side applications.
+
+One of the key features of Node.js is its non-blocking I/O model. 
+This means it can handle multiple requests at the same time without waiting for one task to finish before starting another.
+
+Streams are an important concept in Node.js. 
+They allow data to be processed piece by piece instead of loading the entire data into memory. 
+This is especially useful when working with large files like videos, logs, or big text files.
+
+There are four types of streams in Node.js:
+Readable streams, Writable streams, Duplex streams, and Transform streams. 
+Each type has its own purpose and is used in different situations.
