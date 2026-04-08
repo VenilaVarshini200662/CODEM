@@ -1,0 +1,5 @@
+Line 1: Node.js is fast
+Line 2: Streams are useful
+Line 3: Pipe connects streams
+Line 4: Data flows smoothly
+Line 5: Learning Node is fun
