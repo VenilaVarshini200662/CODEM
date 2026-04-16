@@ -1,0 +1,19 @@
+body{
+    background-color: rgb(233, 201, 74);
+}
+button{
+    width:200px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: rgb(73, 225, 73);
+    font-size: medium;
+}
+button:hover{
+    cursor:pointer;
+    background-color: rgb(162, 205, 89);   
+}
+#imgContainer{
+    height:500px;
+    width:500px;
+    padding-left: 17%;
+}
